@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#151011">
+  <meta name="description" content="Tonari Cards Free。カップルで遊べるスマホ質問カード30枚。">
+  <title>Tonari Cards Free</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <section id="startScreen" class="start-screen screen is-active" aria-label="スタート画面">
+      <div class="brand-mark">Tonari Cards</div>
+      <p class="edition-label">Free Edition</p>
+      <h1>ふたりの会話に<br>ちょうどいい30枚。</h1>
+      <p class="lead">旅行先の夜。家飲み。寝る前。<br>スマホでカードを引くだけ。</p>
+      <button id="startButton" class="primary-button">START</button>
+      <div class="start-note">
+        <span>Question 26</span>
+        <span>Mission 4</span>
+        <span>Adult / Spice はFull版</span>
+      </div>
+    </section>
+
+    <main id="mainScreen" class="main-screen screen" aria-label="カード画面">
+      <header class="top-bar">
+        <button id="backToStartButton" class="ghost-button small" type="button">TITLE</button>
+        <div>
+          <p class="eyebrow">Tonari Cards</p>
+          <h2>Free</h2>
+        </div>
+        <button id="openPanelButton" class="ghost-button small" type="button">LIST</button>
+      </header>
+
+      <section class="mode-row" aria-label="カード種別">
+        <button class="mode-chip is-active" type="button" data-mode="mix">Mix</button>
+        <button class="mode-chip" type="button" data-mode="question">Question</button>
+        <button class="mode-chip" type="button" data-mode="mission">Mission</button>
+      </section>
+
+      <section class="locked-row" aria-label="フル版機能">
+        <button class="locked-chip" type="button" disabled>Adult <span>Full</span></button>
+        <button class="locked-chip" type="button" disabled>Spice <span>Full</span></button>
+      </section>
+
+      <section class="card-stage" aria-live="polite">
+        <article id="card" class="card">
+          <div class="card-meta">
+            <span id="cardType">Ready</span>
+            <span id="cardLevel">Free</span>
+          </div>
+          <p id="cardText" class="card-text">カードを引く</p>
+          <p id="cardCategory" class="card-category">ふたりで答えやすい30枚だけ。</p>
+        </article>
+      </section>
+
+      <section id="choiceArea" class="choice-area" hidden>
+        <p class="choice-title">気になるカードで。</p>
+        <div id="choiceList" class="choice-list"></div>
+      </section>
+
+      <section class="action-grid" aria-label="カード操作">
+        <button id="drawButton" class="primary-button" type="button">カードを引く</button>
+        <button id="threeButton" class="secondary-button" type="button">3枚から選ぶ</button>
+        <button id="favoriteButton" class="secondary-button" type="button">お気に入り</button>
+        <button id="removeButton" class="secondary-button" type="button">もう出さない</button>
+      </section>
+
+      <section class="filter-block">
+        <button id="toggleFilterButton" class="filter-toggle" type="button">カテゴリ</button>
+        <div id="filterPanel" class="filter-panel" hidden>
+          <p>出したいカテゴリだけ残す。</p>
+          <div id="categoryChips" class="category-chips"></div>
+          <button id="resetCategoryButton" class="text-button" type="button">全部出す</button>
+        </div>
+      </section>
+
+      <section class="upgrade-card">
+        <p class="upgrade-kicker">Full版</p>
+        <h3>残り510枚を解放。</h3>
+        <p>恋愛の本音。価値観。旅行。Mission。Adult。Spice。無料版では出していない深めのカードまで。</p>
+        <a id="fullLink" class="upgrade-link" href="#" target="_blank" rel="noreferrer">Full版を見る</a>
+      </section>
+    </main>
+
+    <aside id="sidePanel" class="side-panel" aria-label="カード管理" aria-hidden="true">
+      <div class="side-panel-inner">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Saved</p>
+            <h2>カード管理</h2>
+          </div>
+          <button id="closePanelButton" class="ghost-button small" type="button">CLOSE</button>
+        </div>
+
+        <section class="panel-section">
+          <div class="section-title-row">
+            <h3>お気に入り</h3>
+            <span id="favoriteCount">0</span>
+          </div>
+          <div id="favoriteList" class="mini-list empty">まだなし</div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title-row">
+            <h3>外したカード</h3>
+            <span id="removedCount">0</span>
+          </div>
+          <div id="removedList" class="mini-list empty">まだなし</div>
+          <button id="restoreAllButton" class="secondary-button wide" type="button">外したカードを全部戻す</button>
+        </section>
+      </div>
+    </aside>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
