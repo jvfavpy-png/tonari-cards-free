@@ -1,123 +1,328 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#151011">
-  <meta name="description" content="Tonari Cards Free。カップルで遊べるスマホ質問カード30枚。">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#160b0f" />
+  <meta name="description" content="Tonari Cards Free。カップルで遊べるスマホ質問カード30枚。" />
   <title>Tonari Cards Free</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="free-version">
   <div class="app-shell">
-    <section id="startScreen" class="start-screen screen is-active" aria-label="スタート画面">
-      <div class="brand-mark">Tonari Cards</div>
-      <p class="edition-label">Free Edition</p>
-      <h1>ふたりの会話に<br>ちょうどいい30枚。</h1>
-      <p class="lead">旅行先の夜。家飲み。寝る前。<br>スマホでカードを引くだけ。</p>
-      <button id="startButton" class="primary-button">START</button>
-      <div class="start-note">
-        <span>Question 26</span>
-        <span>Mission 4</span>
-        <span>Adult / Spice はFull版</span>
+    <header class="app-header">
+      <div>
+        <p class="eyebrow">Tonari Cards</p>
+        <h1>Tonari Cards</h1>
       </div>
-    </section>
-
-    <main id="mainScreen" class="main-screen screen" aria-label="カード画面">
-      <header class="top-bar">
-        <button id="backToStartButton" class="ghost-button small" type="button">TITLE</button>
-        <div>
-          <p class="eyebrow">Tonari Cards</p>
-          <h2>Free</h2>
+</header>
+<main class="main-area">
+      <section id="loadingScreen" class="screen active">
+        <div class="glass-card center-card">
+          <p class="small-label">読み込み中</p>
+          <h2>カードを読み込み中</h2>
+          <p class="sub-text">読み込んでる。</p>
         </div>
-        <button id="openPanelButton" class="ghost-button small" type="button">LIST</button>
-      </header>
-
-      <section class="mode-row" aria-label="カード種別">
-        <button class="mode-chip is-active" type="button" data-mode="mix">Mix</button>
-        <button class="mode-chip" type="button" data-mode="question">Question</button>
-        <button class="mode-chip" type="button" data-mode="mission">Mission</button>
       </section>
 
-      <section class="locked-row" aria-label="フル版機能">
-        <button class="locked-chip" type="button" disabled>Adult <span>Full</span></button>
-        <button class="locked-chip" type="button" disabled>Spice <span>Full</span></button>
-      </section>
+      <section id="errorScreen" class="screen">
+        <div class="glass-card center-card error-card">
+          <p class="small-label danger-text">読み込みエラー</p>
+          <h2>CSVを読めなかった</h2>
+          <p id="errorMessage" class="sub-text"></p>
 
-      <section class="card-stage" aria-live="polite">
-        <article id="card" class="card">
-          <div class="card-meta">
-            <span id="cardType">Ready</span>
-            <span id="cardLevel">Free</span>
+          <div class="local-help">
+            <p>
+              直接開くと、CSVが読めないことがある。
+              そのときは下からCSVを選ぶか、ローカルサーバーで開く。
+            </p>
+
+            <label class="file-button">
+              CSVを選ぶ
+              <input id="csvFileInput" type="file" accept=".csv,text/csv" />
+            </label>
           </div>
-          <p id="cardText" class="card-text">カードを引く</p>
-          <p id="cardCategory" class="card-category">ふたりで答えやすい30枚だけ。</p>
-        </article>
-      </section>
-
-      <section id="choiceArea" class="choice-area" hidden>
-        <p class="choice-title">気になるカードで。</p>
-        <div id="choiceList" class="choice-list"></div>
-      </section>
-
-      <section class="action-grid" aria-label="カード操作">
-        <button id="drawButton" class="primary-button" type="button">カードを引く</button>
-        <button id="threeButton" class="secondary-button" type="button">3枚から選ぶ</button>
-        <button id="favoriteButton" class="secondary-button" type="button">お気に入り</button>
-        <button id="removeButton" class="secondary-button" type="button">もう出さない</button>
-      </section>
-
-      <section class="filter-block">
-        <button id="toggleFilterButton" class="filter-toggle" type="button">カテゴリ</button>
-        <div id="filterPanel" class="filter-panel" hidden>
-          <p>出したいカテゴリだけ残す。</p>
-          <div id="categoryChips" class="category-chips"></div>
-          <button id="resetCategoryButton" class="text-button" type="button">全部出す</button>
         </div>
       </section>
 
-      <section class="upgrade-card">
-        <p class="upgrade-kicker">Full版</p>
-        <h3>残り510枚を解放。</h3>
-        <p>恋愛の本音。価値観。旅行。Mission。Adult。Spice。無料版では出していない深めのカードまで。</p>
-        <a id="fullLink" class="upgrade-link" href="#" target="_blank" rel="noreferrer">Full版を見る</a>
+      <section id="titleScreen" class="screen title-screen">
+        <div class="title-card">
+          <p class="small-label">Tonari Cards</p>
+          <h2>ふたりで引くカード</h2>
+          <p class="hero-text">
+            本音も、ミッションも、少しだけ脱線も。
+今の空気で引く。
+          </p>
+          <button id="startButton" class="main-button title-start" type="button">START</button>
+        </div>
+      </section>
+
+      <section id="topScreen" class="screen">
+        <div class="hero-card">
+          <p class="small-label">Free / 30 cards</p>
+          <h2>カードを選ぶ</h2>
+          <p class="hero-text">
+            今の空気に合わせて選ぶ。
+きつかったらパスでOK。
+          </p>
+
+          <div class="play-select">
+            <button class="primary-choice" data-play-type="temperature">
+              <span>温度で選ぶ</span>
+              <small>軽め〜深夜寄りまで</small>
+            </button>
+
+            <button class="primary-choice" data-play-type="fate">
+              <span>運命に任せる</span>
+              <small>何が出るかはカード任せ</small>
+            </button>
+
+            <button class="primary-choice" data-play-type="mood">
+              <span>気分で選ぶ</span>
+              <small>笑う／近づく／少し踏み込む</small>
+            </button>
+          </div>
+
+          <div class="home-bottom">
+            <div class="top-tools">
+              <button id="openSettingsButton" class="tool-button" type="button">出すカード</button>
+              <button id="showFavoritesButton" class="tool-button" type="button">お気に入り</button>
+            </div>
+
+            <div class="card-type-panel" aria-label="Mix">
+              <p class="small-label">Mix</p>
+              <div class="segmented-control">
+                <label>
+                  <input type="radio" name="cardType" value="all" checked />
+                  <span>Mix</span>
+                </label>
+                <label>
+                  <input type="radio" name="cardType" value="questions" />
+                  <span>Question</span>
+                </label>
+                <label>
+                  <input type="radio" name="cardType" value="missions" />
+                  <span>Mission</span>
+                </label>
+              </div>
+              <p id="cardTypeHelp" class="mini-help">質問とミッションを混ぜる。</p>
+              <p id="topAvailabilityHelp" class="mini-help availability-help"></p>
+            </div>
+
+            <div class="mode-switch-panel">
+              <div class="mode-switch-row">
+                <div>
+                  <p class="small-label">Adult</p>
+                  <strong>Full版で解放</strong>
+                </div>
+                <label class="adult-switch" aria-label="Adult切り替え">
+                  <span class="adult-switch__text">Adult</span>
+                  <input id="adultToggle" type="checkbox" />
+                  <span class="adult-switch__slider"></span>
+                </label>
+              </div>
+
+              <section id="attackPanel" class="attack-panel" aria-hidden="true">
+                <div class="attack-panel__text">
+                  <p class="small-label">Spice</p>
+                  <h2>Spice</h2>
+                  <p>Full版で解放。</p>
+                </div>
+                <label class="adult-switch attack-switch" aria-label="Spice切り替え">
+                  <span class="adult-switch__text">Spice</span>
+                  <input id="attackToggle" type="checkbox" />
+                  <span class="adult-switch__slider"></span>
+                </label>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="settingsScreen" class="screen">
+        <div class="screen-head">
+          <button class="ghost-button" id="backToTopFromSettings" type="button">戻る</button>
+          <div>
+            <p class="small-label">出すカード</p>
+            <h2>今日は出すものだけ残す</h2>
+            <p class="sub-text">
+              避けたいカテゴリだけOFF。無料版はAdult / Spiceなし。
+            </p>
+          </div>
+        </div>
+
+        <div id="categoryToggleList" class="settings-list"></div>
+
+        <div class="settings-actions">
+          <button id="enableAllCategories" class="secondary-button" type="button">全部ON</button>
+          <button id="openHiddenCardsButton" class="secondary-button" type="button">外したカード</button>
+          <button id="resetHiddenCards" class="ghost-button" type="button">外したカードを全部戻す</button>
+          <button id="resetSavedData" class="ghost-button danger-mini" type="button">最初に戻す</button>
+        </div>
+        <p id="settingsStatus" class="mini-help"></p>
+      </section>
+
+      <section id="hiddenScreen" class="screen">
+        <div class="screen-head">
+          <button class="ghost-button" id="backToSettingsFromHidden" type="button">戻る</button>
+          <div>
+            <p class="small-label">外したカード</p>
+            <h2>戻すカードある？</h2>
+            <p class="sub-text">
+              戻すとまた出る。
+            </p>
+          </div>
+        </div>
+
+        <div id="hiddenList" class="favorite-list"></div>
+
+        <div class="settings-actions">
+          <button id="restoreAllHiddenCards" class="secondary-button" type="button">全部戻す</button>
+          <button id="backToSettingsFromHiddenBottom" class="ghost-button" type="button">戻る</button>
+        </div>
+      </section>
+
+      <section id="favoriteScreen" class="screen">
+        <div class="screen-head">
+          <button class="ghost-button" id="backToTopFromFavorites" type="button">戻る</button>
+          <div>
+            <p class="small-label">お気に入り</p>
+            <h2>また引きたいカード</h2>
+            <p class="sub-text">気に入ったカードはここに残る。</p>
+          </div>
+        </div>
+
+        <div id="favoriteList" class="favorite-list"></div>
+      </section>
+
+      <section id="modeScreen" class="screen">
+        <div class="screen-head">
+          <button class="ghost-button" id="backToTopFromMode" type="button">戻る</button>
+          <div>
+            <p class="small-label">遊び方</p>
+            <h2 id="modeTitle">どう遊ぶ？</h2>
+            <p id="modeDescription" class="sub-text"></p>
+          </div>
+        </div>
+
+        <div id="modeButtonList" class="mode-grid"></div>
+      </section>
+
+      <section id="drawChoiceScreen" class="screen">
+        <div class="screen-head">
+          <button class="ghost-button" id="backToModeFromDrawChoice" type="button">戻る</button>
+          <div>
+            <p class="small-label">引き方</p>
+            <h2 id="drawChoiceTitle">どう引く？</h2>
+            <p id="drawChoiceDescription" class="sub-text">すぐ見るなら一発。迷うなら候補から。</p>
+          </div>
+        </div>
+
+        <div class="draw-choice-grid">
+          <button id="quickDrawButton" class="primary-choice draw-choice" type="button">
+            <span>一発で引く</span>
+            <small>すぐ見る</small>
+          </button>
+          <button id="candidateDrawButton" class="primary-choice draw-choice" type="button">
+            <span>候補から選ぶ</span>
+            <small>2〜3枚で選ぶ</small>
+          </button>
+        </div>
+      </section>
+
+      <section id="candidateScreen" class="screen">
+        <div class="screen-head">
+          <button class="ghost-button" id="backToDrawChoiceFromCandidate" type="button">戻る</button>
+          <div>
+            <p class="small-label">候補</p>
+            <h2 id="candidateTitle">どのカードをめくる？</h2>
+            <p id="candidateDescription" class="sub-text">
+              中身はまだ秘密。気になるカードを選ぶ。
+            </p>
+          </div>
+        </div>
+
+        <div id="candidateNotice" class="notice-text"></div>
+        <div id="candidateList" class="candidate-list"></div>
+
+        <button id="reshuffleCandidates" class="secondary-button full-width" type="button">
+          別のカード
+        </button>
+      </section>
+
+      <section id="questionScreen" class="screen">
+        <div class="question-layout">
+          <div id="questionCard" class="question-card">
+            <div class="card-topline">
+              <span id="questionType" class="type-pill">質問</span>
+              <span id="questionCategory" class="category-pill">カテゴリ</span>
+              <span id="questionDanger" class="danger-pill">温度</span>
+            </div>
+
+            <p id="questionText" class="question-text">
+              ここにカードが出る
+            </p>
+
+            <p id="questionStatus" class="pass-note">
+              きつかったらパスでOK。やらないのもアリ。
+            </p>
+          </div>
+
+          <div class="question-tools">
+            <button id="favoriteButton" class="mini-action" type="button">お気に入り</button>
+            <button id="hideQuestionButton" class="mini-action danger-mini" type="button">外す</button>
+          </div>
+
+          <div class="action-area">
+            <button id="nextCardButton" class="main-button" type="button">
+              もう1枚
+            </button>
+
+            <button id="passButton" class="secondary-button" type="button">
+              パス
+            </button>
+
+            <button id="backToModeFromQuestion" class="ghost-button full-width" type="button">
+              遊び方を変える
+            </button>
+          </div>
+        </div>
       </section>
     </main>
-
-    <aside id="sidePanel" class="side-panel" aria-label="カード管理" aria-hidden="true">
-      <div class="side-panel-inner">
-        <div class="panel-header">
-          <div>
-            <p class="eyebrow">Saved</p>
-            <h2>カード管理</h2>
-          </div>
-          <button id="closePanelButton" class="ghost-button small" type="button">CLOSE</button>
-        </div>
-
-        <section class="panel-section">
-          <div class="section-title-row">
-            <h3>お気に入り</h3>
-            <span id="favoriteCount">0</span>
-          </div>
-          <div id="favoriteList" class="mini-list empty">まだなし</div>
-        </section>
-
-        <section class="panel-section">
-          <div class="section-title-row">
-            <h3>外したカード</h3>
-            <span id="removedCount">0</span>
-          </div>
-          <div id="removedList" class="mini-list empty">まだなし</div>
-          <button id="restoreAllButton" class="secondary-button wide" type="button">外したカードを全部戻す</button>
-        </section>
-      </div>
-    </aside>
-
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
   </div>
-  <script src="script.js"></script>
+
+  <div id="adultModal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="adultModalTitle">
+      <p class="small-label">Adult</p>
+      <h2 id="adultModalTitle">Adultにする？</h2>
+      <p class="modal-text">
+        18歳以上向けのカードも混ざる。
+        きつかったらパスでOK。
+      </p>
+
+      <div class="modal-actions">
+        <button id="cancelAdultMode" class="ghost-button" type="button">やめる</button>
+        <button id="confirmAdultMode" class="main-button" type="button">ONにする</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="attackModal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-card attack-modal-card" role="dialog" aria-modal="true" aria-labelledby="attackModalTitle">
+      <p class="small-label">Spice</p>
+      <h2 id="attackModalTitle">Spiceを入れる？</h2>
+      <p class="modal-text">
+        少し踏み込むカードも入る。
+        無理ならパス。やるかどうかはふたりで決める。
+      </p>
+
+      <div class="modal-actions">
+        <button id="cancelAttackMode" class="ghost-button" type="button">やめとく</button>
+        <button id="confirmAttackMode" class="main-button" type="button">入れる</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
 </body>
 </html>

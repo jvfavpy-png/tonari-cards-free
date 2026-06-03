@@ -1,63 +1,29 @@
-# Tonari Cards Free
+# Tonari Cards Free v1.0.4
 
-カップル向け質問カードWebアプリ「Tonari Cards」の無料版です。
+無料公開用の30問版です。
 
-## 入っているもの
+## 修正内容
+
+- 元の v2.1.0 UI を維持
+- Question 26枚 / Mission 4枚
+- Adult / Spice / HARD / veryHARD は無料版では出さない
+- Adult / Spice はロック表示のみ
+- `index.html` を直接開いてCSV fetchに失敗しても、内蔵CSVで起動
+- v1.0.4で発生した「\n が実改行として解釈され、カード本文が途中で切れる問題」を修正
+
+## ファイル
 
 ```text
 index.html
 style.css
 script.js
 questions_free_30.csv
-vercel.json
+README.md
 free_selection_note.md
+vercel.json
 ```
-
-## 無料版の仕様
-
-- 30枚収録
-  - Question：26枚
-  - Mission：4枚
-- Adult / Spice はロック表示のみ
-- Mix / Question / Mission 切り替え
-- 1枚引き
-- 3枚候補から選択
-- カテゴリON/OFF
-- お気に入り保存
-- もう出さない
-- 外したカードの個別復元
-- 外したカードの一括復元
-- localStorage保存
-- スマホファーストUI
-
-## フル版URLの設定
-
-`script.js` の上部にある以下を書き換えてください。
-
-```js
-const FULL_VERSION_URL = "#";
-```
-
-例：
-
-```js
-const FULL_VERSION_URL = "https://example.com/tonari-cards-full";
-```
-
-## ローカル確認
-
-`index.html` を直接開いても動きます。
-ブラウザがCSV読み込みをブロックした場合でも、`script.js` 内の内蔵データで動きます。
 
 ## Vercel公開
 
-1. このフォルダをGitHubにアップロード
-2. VercelでNew Project
-3. 該当リポジトリを選択
-4. Framework PresetはOther
-5. Deploy
-
-## 注意
-
-無料版なのでAdult / Spiceの実カードは入れていません。
-有料版への誘導は画面下のFull版カードで行います。
+GitHubへZIPではなく中身をアップロードしてください。
+Build Command / Output Directory は空欄でOKです。
