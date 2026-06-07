@@ -15,28 +15,28 @@
         <p class="eyebrow">Tonari Cards</p>
         <h1>Tonari Cards</h1>
       </div>
-</header>
-<main class="main-area">
+    </header>
+
+    <main class="main-area">
       <section id="loadingScreen" class="screen active">
         <div class="glass-card center-card">
           <p class="small-label">読み込み中</p>
-          <h2>カードを読み込み中</h2>
-          <p class="sub-text">読み込んでる。</p>
+          <h2>カードを読み込んでいます</h2>
+          <p class="sub-text">少し待ってください。</p>
         </div>
       </section>
 
       <section id="errorScreen" class="screen">
         <div class="glass-card center-card error-card">
           <p class="small-label danger-text">読み込みエラー</p>
-          <h2>CSVを読めなかった</h2>
+          <h2>CSVを読み込めませんでした</h2>
           <p id="errorMessage" class="sub-text"></p>
 
           <div class="local-help">
             <p>
-              直接開くと、CSVが読めないことがある。
-              そのときは下からCSVを選ぶか、ローカルサーバーで開く。
+              ファイルを直接開くと、CSVを読み込めない場合があります。
+              下のボタンからCSVを選ぶか、ローカルサーバーで開いてください。
             </p>
-
             <label class="file-button">
               CSVを選ぶ
               <input id="csvFileInput" type="file" accept=".csv,text/csv" />
@@ -49,37 +49,29 @@
         <div class="title-card">
           <p class="small-label">Tonari Cards</p>
           <h2>ふたりで引くカード</h2>
-          <p class="hero-text">
-            本音も、ミッションも、少しだけ脱線も。
-今の空気で引く。
-          </p>
+          <p class="hero-text">本音もミッションも<br />少しだけ脱線も。<br />今の空気で引く。</p>
           <button id="startButton" class="main-button title-start" type="button">START</button>
         </div>
       </section>
 
       <section id="topScreen" class="screen">
         <div class="hero-card">
-          <p class="small-label">Free / 30 cards</p>
+          <p class="small-label">Free / 30枚</p>
           <h2>カードを選ぶ</h2>
-          <p class="hero-text">
-            今の空気に合わせて選ぶ。
-きつかったらパスでOK。
-          </p>
+          <p class="hero-text">今の空気に合わせて選ぶ。<br />無理なカードはパスでOK。</p>
 
           <div class="play-select">
-            <button class="primary-choice" data-play-type="temperature">
+            <button class="primary-choice" data-play-type="temperature" type="button">
               <span>温度で選ぶ</span>
-              <small>軽め〜深夜寄りまで</small>
+              <small>軽め〜少し本音まで</small>
             </button>
-
-            <button class="primary-choice" data-play-type="fate">
+            <button class="primary-choice" data-play-type="fate" type="button">
               <span>運命に任せる</span>
               <small>何が出るかはカード任せ</small>
             </button>
-
-            <button class="primary-choice" data-play-type="mood">
+            <button class="primary-choice" data-play-type="mood" type="button">
               <span>気分で選ぶ</span>
-              <small>笑う／近づく／少し踏み込む</small>
+              <small>笑う／近づく／話を広げる</small>
             </button>
           </div>
 
@@ -89,23 +81,14 @@
               <button id="showFavoritesButton" class="tool-button" type="button">お気に入り</button>
             </div>
 
-            <div class="card-type-panel" aria-label="Mix">
+            <div class="card-type-panel" aria-label="カード種別">
               <p class="small-label">Mix</p>
               <div class="segmented-control">
-                <label>
-                  <input type="radio" name="cardType" value="all" checked />
-                  <span>Mix</span>
-                </label>
-                <label>
-                  <input type="radio" name="cardType" value="questions" />
-                  <span>Question</span>
-                </label>
-                <label>
-                  <input type="radio" name="cardType" value="missions" />
-                  <span>Mission</span>
-                </label>
+                <label><input type="radio" name="cardType" value="all" checked /><span>Mix</span></label>
+                <label><input type="radio" name="cardType" value="questions" /><span>Question</span></label>
+                <label><input type="radio" name="cardType" value="missions" /><span>Mission</span></label>
               </div>
-              <p id="cardTypeHelp" class="mini-help">質問とミッションを混ぜる。</p>
+              <p id="cardTypeHelp" class="mini-help">質問とミッションが混ざります。</p>
               <p id="topAvailabilityHelp" class="mini-help availability-help"></p>
             </div>
 
@@ -113,24 +96,24 @@
               <div class="mode-switch-row">
                 <div>
                   <p class="small-label">Adult</p>
-                  <strong>Full版で解放</strong>
+                  <strong>Full版で使えます</strong>
                 </div>
                 <label class="adult-switch" aria-label="Adult切り替え">
                   <span class="adult-switch__text">Adult</span>
-                  <input id="adultToggle" type="checkbox" />
+                  <input id="adultToggle" type="checkbox" disabled />
                   <span class="adult-switch__slider"></span>
                 </label>
               </div>
 
-              <section id="attackPanel" class="attack-panel" aria-hidden="true">
+              <section id="attackPanel" class="attack-panel visible" aria-hidden="false">
                 <div class="attack-panel__text">
                   <p class="small-label">Spice</p>
                   <h2>Spice</h2>
-                  <p>Full版で解放。</p>
+                  <p>Full版で使えます。</p>
                 </div>
                 <label class="adult-switch attack-switch" aria-label="Spice切り替え">
                   <span class="adult-switch__text">Spice</span>
-                  <input id="attackToggle" type="checkbox" />
+                  <input id="attackToggle" type="checkbox" disabled />
                   <span class="adult-switch__slider"></span>
                 </label>
               </section>
@@ -144,20 +127,16 @@
           <button class="ghost-button" id="backToTopFromSettings" type="button">戻る</button>
           <div>
             <p class="small-label">出すカード</p>
-            <h2>今日は出すものだけ残す</h2>
-            <p class="sub-text">
-              避けたいカテゴリだけOFF。無料版はAdult / Spiceなし。
-            </p>
+            <h2>今日出すカードを選ぶ</h2>
+            <p class="sub-text">避けたいカテゴリだけOFFにできます。Adult / SpiceはFull版で使えます。</p>
           </div>
         </div>
-
         <div id="categoryToggleList" class="settings-list"></div>
-
         <div class="settings-actions">
-          <button id="enableAllCategories" class="secondary-button" type="button">全部ON</button>
+          <button id="enableAllCategories" class="secondary-button" type="button">すべてON</button>
           <button id="openHiddenCardsButton" class="secondary-button" type="button">外したカード</button>
-          <button id="resetHiddenCards" class="ghost-button" type="button">外したカードを全部戻す</button>
-          <button id="resetSavedData" class="ghost-button danger-mini" type="button">最初に戻す</button>
+          <button id="resetHiddenCards" class="ghost-button" type="button">外したカードをすべて戻す</button>
+          <button id="resetSavedData" class="ghost-button danger-mini" type="button">設定をリセット</button>
         </div>
         <p id="settingsStatus" class="mini-help"></p>
       </section>
@@ -167,17 +146,13 @@
           <button class="ghost-button" id="backToSettingsFromHidden" type="button">戻る</button>
           <div>
             <p class="small-label">外したカード</p>
-            <h2>戻すカードある？</h2>
-            <p class="sub-text">
-              戻すとまた出る。
-            </p>
+            <h2>戻すカードを選ぶ</h2>
+            <p class="sub-text">戻すと、また出るようになります。</p>
           </div>
         </div>
-
         <div id="hiddenList" class="favorite-list"></div>
-
         <div class="settings-actions">
-          <button id="restoreAllHiddenCards" class="secondary-button" type="button">全部戻す</button>
+          <button id="restoreAllHiddenCards" class="secondary-button" type="button">すべて戻す</button>
           <button id="backToSettingsFromHiddenBottom" class="ghost-button" type="button">戻る</button>
         </div>
       </section>
@@ -188,10 +163,9 @@
           <div>
             <p class="small-label">お気に入り</p>
             <h2>また引きたいカード</h2>
-            <p class="sub-text">気に入ったカードはここに残る。</p>
+            <p class="sub-text">気に入ったカードはここに残ります。</p>
           </div>
         </div>
-
         <div id="favoriteList" class="favorite-list"></div>
       </section>
 
@@ -204,7 +178,6 @@
             <p id="modeDescription" class="sub-text"></p>
           </div>
         </div>
-
         <div id="modeButtonList" class="mode-grid"></div>
       </section>
 
@@ -214,19 +187,12 @@
           <div>
             <p class="small-label">引き方</p>
             <h2 id="drawChoiceTitle">どう引く？</h2>
-            <p id="drawChoiceDescription" class="sub-text">すぐ見るなら一発。迷うなら候補から。</p>
+            <p id="drawChoiceDescription" class="sub-text">すぐ見るなら一発で。迷うなら候補から。</p>
           </div>
         </div>
-
         <div class="draw-choice-grid">
-          <button id="quickDrawButton" class="primary-choice draw-choice" type="button">
-            <span>一発で引く</span>
-            <small>すぐ見る</small>
-          </button>
-          <button id="candidateDrawButton" class="primary-choice draw-choice" type="button">
-            <span>候補から選ぶ</span>
-            <small>2〜3枚で選ぶ</small>
-          </button>
+          <button id="quickDrawButton" class="primary-choice draw-choice" type="button"><span>一発で引く</span><small>すぐ見る</small></button>
+          <button id="candidateDrawButton" class="primary-choice draw-choice" type="button"><span>候補から選ぶ</span><small>2〜3枚から選ぶ</small></button>
         </div>
       </section>
 
@@ -235,19 +201,13 @@
           <button class="ghost-button" id="backToDrawChoiceFromCandidate" type="button">戻る</button>
           <div>
             <p class="small-label">候補</p>
-            <h2 id="candidateTitle">どのカードをめくる？</h2>
-            <p id="candidateDescription" class="sub-text">
-              中身はまだ秘密。気になるカードを選ぶ。
-            </p>
+            <h2 id="candidateTitle">どのカードを引く？</h2>
+            <p id="candidateDescription" class="sub-text">中身はまだ秘密。気になるカードを選ぶ。</p>
           </div>
         </div>
-
         <div id="candidateNotice" class="notice-text"></div>
         <div id="candidateList" class="candidate-list"></div>
-
-        <button id="reshuffleCandidates" class="secondary-button full-width" type="button">
-          別のカード
-        </button>
+        <button id="reshuffleCandidates" class="secondary-button full-width" type="button">候補を入れ替える</button>
       </section>
 
       <section id="questionScreen" class="screen">
@@ -258,14 +218,8 @@
               <span id="questionCategory" class="category-pill">カテゴリ</span>
               <span id="questionDanger" class="danger-pill">温度</span>
             </div>
-
-            <p id="questionText" class="question-text">
-              ここにカードが出る
-            </p>
-
-            <p id="questionStatus" class="pass-note">
-              きつかったらパスでOK。やらないのもアリ。
-            </p>
+            <p id="questionText" class="question-text">ここにカードが出る</p>
+            <p id="questionStatus" class="pass-note">無理なカードはパスでOK。やらないのもアリ。</p>
           </div>
 
           <div class="question-tools">
@@ -274,17 +228,9 @@
           </div>
 
           <div class="action-area">
-            <button id="nextCardButton" class="main-button" type="button">
-              もう1枚
-            </button>
-
-            <button id="passButton" class="secondary-button" type="button">
-              パス
-            </button>
-
-            <button id="backToModeFromQuestion" class="ghost-button full-width" type="button">
-              遊び方を変える
-            </button>
+            <button id="nextCardButton" class="main-button" type="button">もう1枚</button>
+            <button id="passButton" class="secondary-button" type="button">パス</button>
+            <button id="backToModeFromQuestion" class="ghost-button full-width" type="button">遊び方を変える</button>
           </div>
         </div>
       </section>
@@ -294,15 +240,11 @@
   <div id="adultModal" class="modal-backdrop" aria-hidden="true">
     <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="adultModalTitle">
       <p class="small-label">Adult</p>
-      <h2 id="adultModalTitle">Adultにする？</h2>
-      <p class="modal-text">
-        18歳以上向けのカードも混ざる。
-        きつかったらパスでOK。
-      </p>
-
+      <h2 id="adultModalTitle">Adultも混ぜる？</h2>
+      <p class="modal-text">18歳以上向けのカードが混ざります。<br />無理なカードはパスでOK。<br />進めるかどうかは、ふたりで決めて大丈夫。</p>
       <div class="modal-actions">
-        <button id="cancelAdultMode" class="ghost-button" type="button">やめる</button>
-        <button id="confirmAdultMode" class="main-button" type="button">ONにする</button>
+        <button id="cancelAdultMode" class="ghost-button" type="button">やめておく</button>
+        <button id="confirmAdultMode" class="main-button" type="button">混ぜる</button>
       </div>
     </div>
   </div>
@@ -310,15 +252,11 @@
   <div id="attackModal" class="modal-backdrop" aria-hidden="true">
     <div class="modal-card attack-modal-card" role="dialog" aria-modal="true" aria-labelledby="attackModalTitle">
       <p class="small-label">Spice</p>
-      <h2 id="attackModalTitle">Spiceを入れる？</h2>
-      <p class="modal-text">
-        少し踏み込むカードも入る。
-        無理ならパス。やるかどうかはふたりで決める。
-      </p>
-
+      <h2 id="attackModalTitle">Spiceも混ぜる？</h2>
+      <p class="modal-text">少し踏み込んだカードが混ざります。<br />無理なカードはパスでOK。<br />進めるかどうかは、ふたりで決めて大丈夫。</p>
       <div class="modal-actions">
-        <button id="cancelAttackMode" class="ghost-button" type="button">やめとく</button>
-        <button id="confirmAttackMode" class="main-button" type="button">入れる</button>
+        <button id="cancelAttackMode" class="ghost-button" type="button">やめておく</button>
+        <button id="confirmAttackMode" class="main-button" type="button">混ぜる</button>
       </div>
     </div>
   </div>
